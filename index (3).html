@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gayathri S — Data Analytics Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b1e;
+  --card:#12122a;
+  --border:rgba(139,92,246,0.25);
+  --purple:#8b5cf6;
+  --violet:#7c3aed;
+  --cyan:#06b6d4;
+  --pink:#ec4899;
+  --gold:#f59e0b;
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* GRID BG */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(139,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.04) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(11,11,30,0.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:.8rem 3rem;display:flex;justify-content:space-between;align-items:center;
+}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white)}
+.nav-logo span{color:var(--purple)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--purple)}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:4rem;
+  padding:8rem 6rem 5rem;position:relative;z-index:1;max-width:1300px;margin:0 auto;
+}
+.hero-glow{
+  position:fixed;top:20%;left:10%;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,92,246,0.12) 0%,transparent 65%);
+  pointer-events:none;z-index:0;animation:pulse 6s ease-in-out infinite;
+}
+.hero-glow2{
+  position:fixed;bottom:10%;right:5%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(6,182,212,0.08) 0%,transparent 65%);
+  pointer-events:none;z-index:0;animation:pulse 8s ease-in-out infinite reverse;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+.hero-left{position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);
+  color:var(--purple);padding:.4rem 1rem;border-radius:999px;
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.hero-name{
+  font-family:'Syne',sans-serif;font-size:clamp(2.8rem,5vw,4.5rem);
+  font-weight:800;color:var(--white);line-height:1.05;margin-bottom:1rem;
+}
+.hero-name .grad{
+  background:linear-gradient(135deg,var(--purple),var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:1rem;color:var(--muted);margin-bottom:1rem;font-weight:400}
+.hero-desc{font-size:.95rem;color:var(--muted);line-height:1.85;margin-bottom:2rem;max-width:480px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.chip{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  color:var(--muted);font-size:.73rem;padding:.3rem .85rem;border-radius:999px;
+  transition:all .2s;cursor:default;
+}
+.chip:hover{border-color:var(--purple);color:var(--purple);background:rgba(139,92,246,.1)}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.btn-glow{
+  background:linear-gradient(135deg,var(--violet),var(--purple));color:#fff;
+  padding:.8rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.9rem;
+  box-shadow:0 0 25px rgba(139,92,246,.45);transition:all .25s;
+}
+.btn-glow:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(139,92,246,.65)}
+.btn-out{
+  border:1px solid rgba(255,255,255,.18);color:var(--text);
+  padding:.8rem 2rem;border-radius:8px;text-decoration:none;font-size:.9rem;transition:all .25s;
+}
+.btn-out:hover{border-color:var(--purple);color:var(--purple)}
+.hero-links{display:flex;gap:2rem}
+.hero-links a{color:var(--muted);font-size:.8rem;text-decoration:none;transition:color .2s}
+.hero-links a:hover{color:var(--cyan)}
+
+/* HERO PHOTO */
+.hero-right{display:flex;justify-content:center;align-items:center;position:relative;z-index:1}
+.photo-wrap{position:relative;width:300px;height:300px}
+.photo-ring{
+  position:absolute;inset:-3px;border-radius:50%;
+  background:conic-gradient(var(--purple),var(--cyan),var(--pink),var(--purple));
+  animation:spin 4s linear infinite;z-index:0;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.photo-inner{
+  position:absolute;inset:3px;border-radius:50%;overflow:hidden;z-index:1;
+  background:var(--bg);
+}
+.photo-inner img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.badge-a{
+  position:absolute;bottom:-10px;right:-10px;z-index:2;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:.7rem 1rem;text-align:center;
+  box-shadow:0 0 20px rgba(139,92,246,.2);
+}
+.badge-b{
+  position:absolute;top:-10px;left:-10px;z-index:2;
+  background:var(--card);border:1px solid rgba(6,182,212,.3);
+  border-radius:12px;padding:.7rem 1rem;text-align:center;
+  box-shadow:0 0 20px rgba(6,182,212,.2);
+}
+.bnum{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--purple)}
+.bnum2{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--cyan)}
+.blbl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+
+/* SECTIONS */
+.section{position:relative;z-index:1;padding:6rem 6rem;max-width:1300px;margin:0 auto}
+.stag{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:.6rem}
+.stitle{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--white);margin-bottom:3rem}
+.divider{border:none;border-top:1px solid var(--border);margin:0 6rem;position:relative;z-index:1}
+
+/* ALTERNATING SPLIT SECTIONS */
+.split{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;
+  align-items:center;padding:5rem 6rem;max-width:1300px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.split.reverse .split-img{order:2}
+.split.reverse .split-text{order:1}
+.split-glow{
+  position:absolute;width:400px;height:400px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(139,92,246,0.1) 0%,transparent 65%);
+}
+.split-glow.right{right:-100px;top:50%;transform:translateY(-50%)}
+.split-glow.left{left:-100px;top:50%;transform:translateY(-50%)}
+
+.split-img-wrap{
+  position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 0 40px rgba(139,92,246,0.15);
+  transition:all .3s;cursor:zoom-in;
+}
+.split-img-wrap:hover{box-shadow:0 0 60px rgba(139,92,246,0.3);transform:scale(1.02)}
+.split-img-wrap img{width:100%;display:block}
+.split-img-wrap .img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(139,92,246,0.1),transparent);
+  pointer-events:none;
+}
+.split-label{
+  font-size:.7rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--purple);margin-bottom:.8rem;
+}
+.split-title{
+  font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;
+  color:var(--white);margin-bottom:1rem;line-height:1.2;
+}
+.split-desc{font-size:.92rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem}
+.checkmarks{list-style:none;margin-bottom:1.5rem}
+.checkmarks li{
+  display:flex;align-items:flex-start;gap:.8rem;
+  font-size:.88rem;color:var(--muted);margin-bottom:.6rem;line-height:1.5;
+}
+.checkmarks li::before{
+  content:'✓';color:var(--purple);font-weight:700;
+  background:rgba(139,92,246,.15);border-radius:50%;
+  width:20px;height:20px;display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;flex-shrink:0;margin-top:1px;
+}
+.tools-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.ttag{
+  background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);
+  color:var(--purple);font-size:.72rem;padding:.25rem .7rem;border-radius:999px;font-weight:500;
+}
+.plink{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.85rem;font-weight:600;color:var(--cyan);text-decoration:none;transition:gap .2s;
+}
+.plink:hover{gap:.7rem}
+
+/* ABOUT */
+.about-split{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+  align-items:center;position:relative;z-index:1;
+}
+.about-text{font-size:.95rem;color:var(--muted);line-height:1.9}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;text-align:center;transition:all .25s;
+}
+.stat:hover{border-color:var(--purple);transform:translateY(-3px);box-shadow:0 0 20px rgba(139,92,246,.15)}
+.snum{
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  background:linear-gradient(135deg,var(--purple),var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.slbl{font-size:.75rem;color:var(--muted);margin-top:.3rem}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.skcard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.5rem;transition:all .3s;position:relative;overflow:hidden;
+}
+.skcard::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));
+  transform:scaleX(0);transition:transform .3s;
+}
+.skcard:hover::after{transform:scaleX(1)}
+.skcard:hover{border-color:rgba(139,92,246,.4);transform:translateY(-3px)}
+.skicon{font-size:1.8rem;margin-bottom:.8rem}
+.skcard h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:.8rem}
+.skcard ul{list-style:none}
+.skcard ul li{font-size:.83rem;color:var(--muted);padding:.22rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.skcard ul li:last-child{border:none}
+
+/* INTERNSHIP */
+.icard{
+  background:var(--card);border:1px solid rgba(6,182,212,.2);
+  border-radius:16px;padding:2.5rem;position:relative;overflow:hidden;
+}
+.icard::before{
+  content:'';position:absolute;top:0;left:0;width:4px;height:100%;
+  background:linear-gradient(180deg,var(--cyan),var(--purple));
+}
+.icard h3{font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
+.icard .meta{font-size:.82rem;color:var(--muted);margin-bottom:1.2rem}
+.icard ul{padding-left:1.2rem}
+.icard ul li{font-size:.88rem;color:var(--muted);margin-bottom:.5rem;line-height:1.65}
+
+/* CERTIFICATIONS */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.ccard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;transition:all .3s;cursor:zoom-in;
+}
+.ccard:hover{border-color:var(--purple);transform:translateY(-4px);box-shadow:0 0 30px rgba(139,92,246,.2)}
+.cimg{width:100%;height:155px;object-fit:cover;object-position:top;border-bottom:1px solid var(--border)}
+.cph{height:155px;display:flex;align-items:center;justify-content:center;font-size:3rem;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.15))}
+.cbody{padding:1.2rem}
+.cbody h4{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.3rem}
+.cbody p{font-size:.78rem;color:var(--muted)}
+.ctag{display:inline-block;margin-top:.5rem;font-size:.68rem;color:var(--purple);background:rgba(139,92,246,.1);padding:.2rem .6rem;border-radius:999px}
+
+/* ACHIEVEMENTS */
+.agrid{display:grid;gap:.9rem}
+.acard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:1.2rem 1.5rem;
+  display:flex;gap:1.1rem;align-items:flex-start;transition:all .25s;
+}
+.acard:hover{border-color:var(--gold);transform:translateX(6px);box-shadow:0 0 20px rgba(245,158,11,.1)}
+.aicon{font-size:1.4rem;flex-shrink:0}
+.acard h4{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.25rem}
+.acard p{font-size:.82rem;color:var(--muted);line-height:1.5}
+
+/* EDUCATION */
+.egrid{display:grid;gap:1rem}
+.ecard{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:all .25s;
+}
+.ecard:hover{border-color:var(--purple);box-shadow:0 0 20px rgba(139,92,246,.1)}
+.ecard h3{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:.3rem}
+.ecard p{font-size:.83rem;color:var(--muted)}
+.eyear{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--purple);flex-shrink:0;margin-left:1rem}
+
+/* RESUME CTA */
+.rcta{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:5rem 2rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.rcta::before{
+  content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,92,246,.12) 0%,transparent 65%);
+}
+.rcta h2{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--white);margin-bottom:1rem;position:relative}
+.rcta p{color:var(--muted);margin-bottom:2rem;position:relative;font-size:.95rem}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);padding:2rem 6rem;
+  display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:1;flex-wrap:wrap;gap:1rem;
+}
+.footer-left{color:var(--muted);font-size:.82rem}
+.footer-right{display:flex;gap:1.5rem}
+.footer-right a{color:var(--muted);font-size:.82rem;text-decoration:none;transition:color .2s}
+.footer-right a:hover{color:var(--purple)}
+
+/* LIGHTBOX */
+.lb{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.93);align-items:center;justify-content:center}
+.lb.on{display:flex}
+.lb img{max-width:90vw;max-height:90vh;border-radius:12px}
+.lbx{position:absolute;top:1.5rem;right:2rem;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
+
+/* FADE IN */
+.fade{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade.in{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:.8rem 1.5rem}
+  .nav-links{gap:1rem}
+  .hero{grid-template-columns:1fr;padding:7rem 2rem 4rem;text-align:center}
+  .hero-right{order:-1}
+  .hero-chips,.hero-btns,.hero-links{justify-content:center}
+  .hero-desc{margin:0 auto 2rem}
+  .split{grid-template-columns:1fr;padding:3rem 2rem;gap:2.5rem}
+  .split.reverse .split-img{order:0}
+  .split.reverse .split-text{order:0}
+  .section{padding:4rem 2rem}
+  .about-split{grid-template-columns:1fr}
+  footer{padding:2rem;flex-direction:column;text-align:center}
+  .divider{margin:0 2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLB()">
+  <span class="lbx">✕</span>
+  <img id="lbimg" src="" alt="">
+</div>
+
+<!-- GLOW -->
+<div class="hero-glow"></div>
+<div class="hero-glow2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Gayathri <span>S</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#resume">Resume</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">◆ Data Analytics Portfolio</div>
+    <h1 class="hero-name">Gayathri <span class="grad">S</span></h1>
+    <p class="hero-sub">BCA Graduate &nbsp;·&nbsp; Chennai, Tamil Nadu</p>
+    <p class="hero-desc">Turning raw data into meaningful business insights through Excel, SQL, Python and Power BI. 6 end-to-end analytics projects completed under Naan Mudhalvan — Tamil Nadu Government.</p>
+    <div class="hero-chips">
+      <span class="chip">Microsoft Excel</span>
+      <span class="chip">MySQL</span>
+      <span class="chip">Python</span>
+      <span class="chip">Power BI</span>
+      <span class="chip">DAX</span>
+      <span class="chip">EDA</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-glow">View Projects</a>
+      <a href="https://drive.google.com/file/d/19hxu6tkFUyMnaV7_hrr-w77bTG6XjAth/view?usp=drive_link" target="_blank" class="btn-out">Download Resume</a>
+    </div>
+    <div class="hero-links">
+      <a href="mailto:gayathri01720@gmail.com">gayathri01720@gmail.com</a>
+      <a href="https://www.linkedin.com/in/gayathri-s5" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Gayathri720" target="_blank">GitHub</a>
+      <a href="tel:+917200798565">+91 7200798565</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-wrap">
+      <div class="photo-ring"></div>
+      <div class="photo-inner">
+        <img src="profile.jpg" alt="Gayathri S" onerror="this.src='Image.jpg'">
+      </div>
+      <div class="badge-a"><div class="bnum">6</div><div class="blbl">Projects</div></div>
+      <div class="badge-b"><div class="bnum2">4</div><div class="blbl">Tools</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<hr class="divider">
+<div class="section" id="about">
+  <div class="stag">Who I Am</div>
+  <h2 class="stitle">About Me</h2>
+  <div class="about-split">
+    <p class="about-text fade">I am a BCA Graduate (April 2026) from Shri Shankarlal Sundarbai Shasun Jain College for Women, University of Madras, Chennai.<br><br>I have hands-on experience in data analysis, SQL database design, Python-based exploratory data analysis, and Power BI dashboard development — completing 6 end-to-end analytics projects through Naan Mudhalvan, the Tamil Nadu Government Skill Development Program.<br><br>I completed a 1-month Business &amp; Data Analytics internship at YBI Foundation. I am passionate about transforming raw data into clear, actionable business insights and am seeking an entry-level IT role in Chennai.</p>
+    <div class="stats-grid">
+      <div class="stat fade"><div class="snum">6</div><div class="slbl">Projects Completed</div></div>
+      <div class="stat fade"><div class="snum">4</div><div class="slbl">Tools Mastered</div></div>
+      <div class="stat fade"><div class="snum">10K+</div><div class="slbl">Rows Analysed</div></div>
+      <div class="stat fade"><div class="snum">3</div><div class="slbl">Certifications</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<hr class="divider">
+<div class="section" id="education">
+  <div class="stag">Academic Background</div>
+  <h2 class="stitle">Education</h2>
+  <div class="egrid">
+    <div class="ecard fade"><div><h3>Bachelor of Computer Applications (BCA)</h3><p>Shri Shankarlal Sundarbai Shasun Jain College for Women, University of Madras, Chennai</p></div><div class="eyear">2026</div></div>
+    <div class="ecard fade"><div><h3>HSC — State Board</h3><p>Government Higher Secondary School, Iyyapanthangal, Kanchipuram</p></div><div class="eyear">2023</div></div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<hr class="divider">
+<div class="section" id="skills">
+  <div class="stag">What I Work With</div>
+  <h2 class="stitle">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skcard fade"><div class="skicon">📊</div><h4>Data Analysis</h4><ul><li>Microsoft Excel (Advanced)</li><li>Microsoft Power BI</li><li>DAX &amp; Power Query</li><li>Dashboard Development</li><li>Pivot Tables &amp; Slicers</li></ul></div>
+    <div class="skcard fade"><div class="skicon">🗄️</div><h4>Database</h4><ul><li>MySQL</li><li>Database Design</li><li>JOINs &amp; Subqueries</li><li>Window Functions</li><li>Query Optimization</li></ul></div>
+    <div class="skcard fade"><div class="skicon">🐍</div><h4>Programming</h4><ul><li>Python</li><li>Pandas &amp; NumPy</li><li>Matplotlib &amp; Seaborn</li><li>Jupyter Notebook</li><li>Exploratory Data Analysis</li></ul></div>
+    <div class="skcard fade"><div class="skicon">🛠️</div><h4>Tools</h4><ul><li>MySQL Workbench</li><li>Google Colab</li><li>GitHub</li><li>MS PowerPoint (Advanced)</li><li>Google Drive</li></ul></div>
+  </div>
+</div>
+
+<!-- PROJECTS — ALTERNATING -->
+<hr class="divider">
+<div class="section" id="projects">
+  <div class="stag">What I Have Built</div>
+  <h2 class="stitle">Projects</h2>
+</div>
+
+<!-- Project 1: IMG LEFT, TEXT RIGHT -->
+<div class="split fade">
+  <div class="split-glow left"></div>
+  <div class="split-img">
+    <div class="split-img-wrap" onclick="openLB('powerbi-dashboard.png')">
+      <img src="powerbi-dashboard.png" alt="Power BI Dashboard">
+      <div class="img-overlay"></div>
+    </div>
+  </div>
+  <div class="split-text">
+    <div class="split-label">Project 01 &nbsp;·&nbsp; Naan Mudhalvan</div>
+    <h3 class="split-title">Network Packet Log Analysis</h3>
+    <div class="tools-row"><span class="ttag">Excel</span><span class="ttag">MySQL</span><span class="ttag">Python</span><span class="ttag">Power BI</span></div>
+    <p class="split-desc">Analysed 10,002 rows of network traffic data across Excel, MySQL, Python and Power BI — building a complete end-to-end analytics pipeline from raw data to interactive dashboard.</p>
+    <ul class="checkmarks">
+      <li>3-tier conditional formatting in Excel to classify query speed — slow, moderate, fast</li>
+      <li>MySQL queries to detect failed queries and calculate average execution time per query type</li>
+      <li>Python visualizations — scatter plot, bar chart, box plot using Matplotlib and Seaborn</li>
+      <li>Power BI dashboard with 6 charts, dynamic slicer — 110K packets, 85M bytes analysed</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Project 1b: second PBI image — TEXT LEFT, IMG RIGHT -->
+<div class="split reverse fade">
+  <div class="split-glow right"></div>
+  <div class="split-text">
+    <div class="split-label">Project 01 &nbsp;·&nbsp; Power BI Dashboard</div>
+    <h3 class="split-title">KPI Cards &amp; Live Slicers</h3>
+    <p class="split-desc">The Power BI dashboard features real-time KPI cards showing total packet count and total bytes, plus a protocol slicer that filters all charts dynamically — giving instant network insights.</p>
+    <ul class="checkmarks">
+      <li>KPI cards: 110K total packets · 85M total bytes</li>
+      <li>Protocol slicer filters ICMP, TCP, UDP dynamically</li>
+      <li>Stacked area chart shows packet distribution over traffic volume</li>
+    </ul>
+  </div>
+  <div class="split-img">
+    <div class="split-img-wrap" onclick="openLB('powerbi-kpi.png')">
+      <img src="powerbi-kpi.png" alt="Power BI KPI">
+      <div class="img-overlay"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Project 2: IMG LEFT, TEXT RIGHT -->
+<div class="split fade">
+  <div class="split-glow left"></div>
+  <div class="split-img">
+    <div class="split-img-wrap" onclick="openLB('python-price-chart.png')">
+      <img src="python-price-chart.png" alt="Python EDA">
+      <div class="img-overlay"></div>
+    </div>
+  </div>
+  <div class="split-text">
+    <div class="split-label">Project 02 &nbsp;·&nbsp; Naan Mudhalvan</div>
+    <h3 class="split-title">EDA — E-Commerce Product Dataset</h3>
+    <div class="tools-row"><span class="ttag">Python</span><span class="ttag">Pandas</span><span class="ttag">NumPy</span><span class="ttag">Matplotlib</span><span class="ttag">Seaborn</span></div>
+    <p class="split-desc">Performed full Exploratory Data Analysis on an e-commerce product dataset — uncovering pricing patterns, discount trends, stock outliers, and category insights.</p>
+    <ul class="checkmarks">
+      <li>Univariate, bivariate, and multivariate analysis on pricing, discounts, and stock levels</li>
+      <li>6 visualizations including price histogram, correlation heatmap, and category bar chart</li>
+      <li>Identified stock outliers and discount-price relationships to support business decisions</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Project 2b: category chart — TEXT LEFT, IMG RIGHT -->
+<div class="split reverse fade">
+  <div class="split-glow right"></div>
+  <div class="split-text">
+    <div class="split-label">Project 02 &nbsp;·&nbsp; Python Insights</div>
+    <h3 class="split-title">Average Price by Category</h3>
+    <p class="split-desc">Multivariate bar chart analysis reveals pricing distribution across product categories — identifying which categories command premium pricing and supporting inventory strategy decisions.</p>
+    <ul class="checkmarks">
+      <li>Categories: Apparel, Electronics, Footwear, Books, Home Appliances</li>
+      <li>Average price comparison reveals near-uniform pricing across categories</li>
+      <li>Combined with heatmap for correlation analysis between all numerical variables</li>
+    </ul>
+  </div>
+  <div class="split-img">
+    <div class="split-img-wrap" onclick="openLB('python-category-chart.png')">
+      <img src="python-category-chart.png" alt="Category Chart">
+      <div class="img-overlay"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Project 3: IMG LEFT, TEXT RIGHT -->
+<div class="split fade">
+  <div class="split-glow left"></div>
+  <div class="split-img">
+    <div class="split-img-wrap" onclick="openLB('excel-dashboard.png')">
+      <img src="excel-dashboard.png" alt="Excel Dashboard">
+      <div class="img-overlay"></div>
+    </div>
+  </div>
+  <div class="split-text">
+    <div class="split-label">Project 03 &nbsp;·&nbsp; Personal Project</div>
+    <h3 class="split-title">Retail Sales Database Analysis</h3>
+    <div class="tools-row"><span class="ttag">MySQL</span><span class="ttag">MySQL Workbench</span><span class="ttag">Excel</span></div>
+    <p class="split-desc">Independently designed and built a normalized relational database for a retail store — from schema design to analytical SQL queries answering real business questions.</p>
+    <ul class="checkmarks">
+      <li>4-table normalized database with full primary and foreign key constraints</li>
+      <li>5 analytical SQL queries: top customers, monthly trends, average order value using subquery</li>
+      <li>Key insight: Electronics dominated revenue — Laptop had the highest individual product sales</li>
+    </ul>
+    <a href="https://github.com/Gayathri720/retail-sales-sql-analysis" target="_blank" class="plink">View on GitHub →</a>
+  </div>
+</div>
+
+<!-- INTERNSHIP -->
+<hr class="divider">
+<div class="section" id="internship">
+  <div class="stag">Work Experience</div>
+  <h2 class="stitle">Internship</h2>
+  <div class="icard fade">
+    <h3>Business &amp; Data Analytics Intern — YBI Foundation</h3>
+    <div class="meta">March 2025 &nbsp;·&nbsp; 1 Month &nbsp;·&nbsp; Online</div>
+    <ul>
+      <li>Cleaned and organised real-world sales datasets in Excel — removed duplicates, fixed inconsistencies, applied conditional formatting and data validation</li>
+      <li>Analysed sales data using Pivot Tables and Excel formulas to identify trends, summarize key metrics, and detect anomalies</li>
+      <li>Submitted structured analytical reports with findings and business recommendations</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<hr class="divider">
+<div class="section" id="certifications">
+  <div class="stag">Credentials</div>
+  <h2 class="stitle">Certifications</h2>
+  <div class="cgrid">
+    <div class="ccard fade" onclick="openLB('cert-accenture.png')">
+      <img src="cert-accenture.png" alt="Accenture" class="cimg" onerror="this.style.display='none'">
+      <div class="cbody"><h4>Data Analytics &amp; Visualization Job Simulation</h4><p>Accenture via Forage</p><span class="ctag">March 2024</span></div>
+    </div>
+    <div class="ccard fade" onclick="openLB('cert-ibm.png')">
+      <img src="cert-ibm.png" alt="IBM" class="cimg" onerror="this.style.display='none'">
+      <div class="cbody"><h4>Generative AI with IBM Cloud</h4><p>Naan Mudhalvan / IBM SkillsBuild</p><span class="ctag">August 2025</span></div>
+    </div>
+    <div class="ccard fade">
+      <div class="cph">📜</div>
+      <div class="cbody"><h4>Microsoft Excel for Data Analytics</h4><p>Infosys Springboard</p><span class="ctag">Online Certification</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<hr class="divider">
+<div class="section" id="achievements">
+  <div class="stag">Recognition</div>
+  <h2 class="stitle">Achievements &amp; Leadership</h2>
+  <div class="agrid">
+    <div class="acard fade"><div class="aicon">🏆</div><div><h4>Best Project of the Year — District Level Rotaract Award (2025)</h4><p>'Soles to Smiles' selected as best community project across all clubs in the district — donated 811 slippers to underprivileged communities</p></div></div>
+    <div class="acard fade"><div class="aicon">👑</div><div><h4>Club Service Director — Rotaract Club (2024–25)</h4><p>Led Sponsorship, Branding, and Designing Committees for Rotaract Culturals; designed promotional videos for multiple cultural events</p></div></div>
+    <div class="acard fade"><div class="aicon">⭐</div><div><h4>Star Rotaracter Award — Rotaract Club</h4><p>Recognition for outstanding service and dedication throughout the year</p></div></div>
+    <div class="acard fade"><div class="aicon">🥇</div><div><h4>1st Prize — Video Editing</h4><p>World Without Maths competition</p></div></div>
+    <div class="acard fade"><div class="aicon">🥈</div><div><h4>2nd Prize — Poster Design</h4><p>Anti-Drug Awareness competition</p></div></div>
+  </div>
+</div>
+
+<!-- RESUME CTA -->
+<hr class="divider">
+<div class="section" id="resume">
+  <div class="rcta fade">
+    <h2>Let's Work Together</h2>
+    <p>Download my latest resume to know more about my skills, projects, and experience.</p>
+    <a href="https://drive.google.com/file/d/19hxu6tkFUyMnaV7_hrr-w77bTG6XjAth/view?usp=drive_link" target="_blank" class="btn-glow">Download Resume (PDF)</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">© 2026 Gayathri S &nbsp;·&nbsp; Chennai, Tamil Nadu</div>
+  <div class="footer-right">
+    <a href="mailto:gayathri01720@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/gayathri-s5" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Gayathri720" target="_blank">GitHub</a>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const el=document.getElementById(a.getAttribute('href').slice(1));
+    if(el)window.scrollTo({top:el.offsetTop-65,behavior:'smooth'});
+  });
+});
+
+// Fade in on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:0.07});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+// Lightbox
+function openLB(src){document.getElementById('lbimg').src=src;document.getElementById('lb').classList.add('on')}
+function closeLB(){document.getElementById('lb').classList.remove('on')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB()});
+</script>
+</body>
+</html>
